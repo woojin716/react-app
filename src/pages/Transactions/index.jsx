@@ -65,8 +65,7 @@ function Transactions () {
                     <thead>
                         <th>TX HASH</th>
                         <th>BLOCK NUMBER</th>
-                        <th>FROM</th>
-                        <th>TO</th>
+                        <th>MEV TAKER</th>
                         <th>MEV AMOUNTS (eth)</th>
                         <th>GAS PRICE</th>
                         <th>TX FEE</th>
@@ -77,37 +76,14 @@ function Transactions () {
                         <tbody>
                             {orders.map((order, index) => (
                                 <tr key={index}>
-                                    <td><span>{order.id.slice(0,15)}...</span></td>
-                                    <td><span>{order.date}</span></td>
-                                    <td>
-                                        <div>
-                                            {order.status === 'Paid' ?
-                                                <img
-                                                    src={DoneIcon}
-                                                    alt='paid-icon'
-                                                    className='dashboard-content-icon' />
-                                            : order.status === 'Canceled' ?
-                                                <img
-                                                    src={CancelIcon}
-                                                    alt='canceled-icon'
-                                                    className='dashboard-content-icon' />
-                                            : order.status === 'Refunded' ?
-                                                <img
-                                                    src={RefundedIcon}
-                                                    alt='refunded-icon'
-                                                    className='dashboard-content-icon' />
-                                            : null}
-                                            <span>{order.status}</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <span>{order.first_name} {order.last_name}</span>
-                                        </div>
-                                    </td>
-                                    <td><span>{order.product}</span></td>
+                                    <td><span>{order.tx_hash.slice(0,15)}...</span></td>
+                                    <td><span>{order.block_num}</span></td>
+                                    <td><span>{order.mev_taker}</span></td>
+                                    <td><span>{order.amount}</span></td>
+                                    <td><span>{order.gas_price}</span></td>
+                                    <td><span>{order.tx_fee}</span></td>
                                 </tr>
-                            ))}
+                            ))} 
                         </tbody>
                     : null}
                 </table>
