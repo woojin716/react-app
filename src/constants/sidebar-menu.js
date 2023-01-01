@@ -19,11 +19,17 @@ const sidebar_menu = [
     {
         id: 3,
         icon: ShippingIcon,
-        path: '/products',
+        path: '/locations',
         title: 'Transactions',
     },
     {
         id: 4,
+        icon: ShippingIcon,
+        path: '/locations2',
+        title: 'Builders',
+    },
+    {
+        id: 5,
         icon: UserIcon,
         path: '/profile',
         title: 'About',

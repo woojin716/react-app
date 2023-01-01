@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import DashboardHeader from '../../components/DashboardHeader';
 
-import all_orders from '../../constants/orders';
+import all_txs from '../../constants/transactions';
 import {calculateRange, sliceData} from '../../utils/table-pagination';
 
 import '../styles.css';
@@ -9,22 +9,23 @@ import DoneIcon from '../../assets/icons/done.svg';
 import CancelIcon from '../../assets/icons/cancel.svg';
 import RefundedIcon from '../../assets/icons/refunded.svg';
 
-function Orders () {
+function Transactions () {
     const [search, setSearch] = useState('');
-    const [orders, setOrders] = useState(all_orders);
+    const [orders, setOrders] = useState(all_txs);
     const [page, setPage] = useState(1);
     const [pagination, setPagination] = useState([]);
 
     useEffect(() => {
-        setPagination(calculateRange(all_orders, 10));
-        setOrders(sliceData(all_orders, page, 10));
+        setPagination(calculateRange(all_txs, 10));
+        setOrders(sliceData(all_txs, page, 10));
     }, []);
 
     // Search
     const __handleSearch = (event) => {
         setSearch(event.target.value);
-        if (event.target.value !== '') {
+        if (event.target.value !== ('')) {
             let search_results = orders.filter((item) =>
+                item.id.toLowerCase().includes(search.toLowerCase()) ||
                 item.first_name.toLowerCase().includes(search.toLowerCase()) ||
                 item.last_name.toLowerCase().includes(search.toLowerCase()) ||
                 item.product.toLowerCase().includes(search.toLowerCase())
@@ -39,7 +40,7 @@ function Orders () {
     // Change Page 
     const __handleChangePage = (new_page) => {
         setPage(new_page);
-        setOrders(sliceData(all_orders, new_page, 10));
+        setOrders(sliceData(all_txs, new_page, 10));
     }
 
     return(
@@ -49,7 +50,7 @@ function Orders () {
 
             <div className='dashboard-content-container'>
                 <div className='dashboard-content-header'>
-                    <h2>Blocks</h2>
+                    <h2>MEV Transactions</h2>
                     <div className='dashboard-content-search'>
                         <input
                             type='text'
@@ -62,18 +63,21 @@ function Orders () {
 
                 <table>
                     <thead>
+                        <th>TX HASH</th>
                         <th>BLOCK NUMBER</th>
-                        <th>TIMESTAMP</th>
-                        <th>MINER</th>
-                        <th>MEV TXS / TOTAL</th>
+                        <th>FROM</th>
+                        <th>TO</th>
                         <th>MEV AMOUNTS (eth)</th>
+                        <th>GAS PRICE</th>
+                        <th>TX FEE</th>
+
                     </thead>
 
                     {orders.length !== 0 ?
                         <tbody>
                             {orders.map((order, index) => (
                                 <tr key={index}>
-                                    <td><span>{order.id}</span></td>
+                                    <td><span>{order.id.slice(0,15)}...</span></td>
                                     <td><span>{order.date}</span></td>
                                     <td>
                                         <div>
@@ -129,4 +133,4 @@ function Orders () {
     )
 }
 
-export default Orders;
+export default Transactions;
