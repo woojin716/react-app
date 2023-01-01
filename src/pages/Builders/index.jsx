@@ -9,8 +9,18 @@ import DoneIcon from '../../assets/icons/done.svg';
 import CancelIcon from '../../assets/icons/cancel.svg';
 import RefundedIcon from '../../assets/icons/refunded.svg';
 
+<<<<<<< HEAD
 function Builders () {
     
 }
 
 export default Builders;
+=======
+function About () {
+    return(
+        <h1>ㅎㅇ</h1>
+    )
+}
+
+export default About;
+>>>>>>> origin/main

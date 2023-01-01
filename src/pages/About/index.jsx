@@ -1,16 +1,24 @@
 import React, {useState, useEffect} from 'react';
 import DashboardHeader from '../../components/DashboardHeader';
 
+<<<<<<< HEAD
 import {calculateRange, sliceData} from '../../utils/table-pagination';
 
 import '../styles.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+=======
+import all_orders from '../../constants/orders';
+import {calculateRange, sliceData} from '../../utils/table-pagination';
+
+import '../styles.css';
+>>>>>>> origin/main
 import DoneIcon from '../../assets/icons/done.svg';
 import CancelIcon from '../../assets/icons/cancel.svg';
 import RefundedIcon from '../../assets/icons/refunded.svg';
 
 function About () {
     return(
+<<<<<<< HEAD
         <html>
             <body>
                 <section class="contact">
@@ -37,5 +45,10 @@ function About () {
     )
 };
 
+=======
+        <h1>ㅎㅇ</h1>
+    )
+}
+>>>>>>> origin/main
 
 export default About;

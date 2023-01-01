@@ -65,8 +65,12 @@ function Transactions () {
                     <thead>
                         <th>TX HASH</th>
                         <th>BLOCK NUMBER</th>
+<<<<<<< HEAD
                         <th>FROM</th>
                         <th>TO</th>
+=======
+                        <th>MEV TAKER</th>
+>>>>>>> origin/main
                         <th>MEV AMOUNTS (eth)</th>
                         <th>GAS PRICE</th>
                         <th>TX FEE</th>
@@ -77,6 +81,7 @@ function Transactions () {
                         <tbody>
                             {orders.map((order, index) => (
                                 <tr key={index}>
+<<<<<<< HEAD
                                     <td><span>{order.id.slice(0,15)}...</span></td>
                                     <td><span>{order.date}</span></td>
                                     <td>
@@ -108,6 +113,16 @@ function Transactions () {
                                     <td><span>{order.product}</span></td>
                                 </tr>
                             ))}
+=======
+                                    <td><span>{order.tx_hash.slice(0,15)}...</span></td>
+                                    <td><span>{order.block_num}</span></td>
+                                    <td><span>{order.mev_taker}</span></td>
+                                    <td><span>{order.amount}</span></td>
+                                    <td><span>{order.gas_price}</span></td>
+                                    <td><span>{order.tx_fee}</span></td>
+                                </tr>
+                            ))} 
+>>>>>>> origin/main
                         </tbody>
                     : null}
                 </table>
