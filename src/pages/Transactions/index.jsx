@@ -14,6 +14,7 @@ function Transactions () {
     const [orders, setOrders] = useState(all_txs);
     const [page, setPage] = useState(1);
     const [pagination, setPagination] = useState([]);
+    const txlink = "https://etherscan.io/tx/"
 
     useEffect(() => {
         setPagination(calculateRange(all_txs, 10));
@@ -25,9 +26,7 @@ function Transactions () {
         setSearch(event.target.value);
         if (event.target.value !== ('')) {
             let search_results = orders.filter((item) =>
-                item.id.toLowerCase().includes(search.toLowerCase()) ||
-                item.first_name.toLowerCase().includes(search.toLowerCase()) ||
-                item.last_name.toLowerCase().includes(search.toLowerCase()) ||
+                item.tx_hash.toLowerCase().includes(search.toLowerCase()) ||
                 item.product.toLowerCase().includes(search.toLowerCase())
             );
             setOrders(search_results);
@@ -65,6 +64,7 @@ function Transactions () {
                     <thead>
                         <th>TX HASH</th>
                         <th>BLOCK NUMBER</th>
+                        <th>MEV TAKER</th>
                         <th>MEV AMOUNTS (eth)</th>
                         <th>GAS PRICE</th>
                         <th>TX FEE</th>
@@ -75,10 +75,10 @@ function Transactions () {
                         <tbody>
                             {orders.map((order, index) => (
                                 <tr key={index}>
-
-                                    <td><span>{order.tx_hash.slice(0,15)}...</span></td>
+                                    
+                                    <td><span><a href={txlink+order.tx_hash}>{order.tx_hash.slice(0,15)}...</a></span></td>
                                     <td><span>{order.block_num}</span></td>
-                                    <td><span>{order.mev_taker}</span></td>
+                                    <td><span>{order.mev_taker.slice(0,15)}...</span></td>
                                     <td><span>{order.amount}</span></td>
                                     <td><span>{order.gas_price}</span></td>
                                     <td><span>{order.tx_fee}</span></td>
